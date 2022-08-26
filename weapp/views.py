@@ -47,7 +47,7 @@ class WeAppAuthView(CheckSecurityMixin, StatusWrapMixin, JsonResponseMixin, Deta
                 obj.session = session
                 obj.save()
                 return self.render_to_response({'session': session})
-            self.message = '授权错误'
+            self.message = 'Authorization error'
             self.status_code = ERROR_VERIFY
             return self.render_to_response({})
 
@@ -77,7 +77,7 @@ class SearchView(CheckSecurityMixin, StatusWrapMixin, JsonResponseMixin, DetailV
                     return self.render_to_response(dm)
             result = get_whois_info(domain)
             if not result.get('StatusList'):
-                self.message = '查询数据获取失败'
+                self.message = 'Query data acquisition failed'
                 self.status_code = ERROR_DATA
                 return self.render_to_response({})
             due = result.get('ExpirationDate', None)
@@ -98,7 +98,7 @@ class SearchView(CheckSecurityMixin, StatusWrapMixin, JsonResponseMixin, DetailV
                                                            register=register,
                                                            reg_email=reg_email, available=True)
             return self.render_to_response(obj)
-        self.message = '信息缺失'
+        self.message = 'Missing information'
         self.status_code = ERROR_DATA
         return self.render_to_response({})
 
@@ -121,7 +121,7 @@ class DomainHandleView(CheckSecurityMixin, StatusWrapMixin, JsonResponseMixin, D
                     else:
                         user.domain_list.remove(dm)
                 return self.render_to_response({})
-            self.message = '验证失败'
+            self.message = 'verification failed'
             self.status_code = ERROR_PERMISSION_DENIED
             return self.render_to_response({})
         self.message = '参数缺失'
