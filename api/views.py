@@ -239,7 +239,7 @@ class UserInfoView(CheckSecurityMixin, CheckTokenMixin, StatusWrapMixin, JsonRes
 
     def get(self, request, *args, **kwargs):
         if not self.wrap_check_sign_result():
-            self.message = 'sign 验证失败'
+            self.message = 'sign verification failed'
             self.status_code = ERROR_PERMISSION_DENIED
             return self.render_to_response(dict())
         if self.wrap_check_token_result():
@@ -271,7 +271,7 @@ class UploadView(CheckSecurityMixin, CheckTokenMixin, StatusWrapMixin, JsonRespo
         path, sp = upload_picture(image_file)
         data = json.dumps({'url': '{0}{1}'.format(HOST, path),
                            'success': 1,
-                           'message': '成功'})
+                           'message': 'success'})
         return HttpResponse(data, content_type='application/json')
 
 
@@ -319,11 +319,11 @@ class CollectionsListView(CheckSecurityMixin, StatusWrapMixin, JsonRequestMixin,
         news = Collection.objects.filter(unique_id=md5)
         if not (title and url):
             self.status_code = ERROR_DATA
-            self.message = '信息缺失'
+            self.message = 'Missing information'
             return self.render_to_response({})
         if news.exists():
             self.status_code = INFO_EXISTED
-            self.message = '消息已存在'
+            self.message = 'Message already exists'
             return self.render_to_response({})
         News(title=title, url=url, unique_id=md5, time=news_time).save()
         return self.render_to_response({})

@@ -1,5 +1,5 @@
 {% extends "blog/base.html" %}
-{% block title %}{{ article.title }} | RaPoSpectre的个人博客{% endblock %}
+{% block title %}{{ article.title }} | RaPoSpectre's personal blog{% endblock %}
 {% block css %}
     <link rel="stylesheet" href="//cdn.bootcss.com/sco.js/1.1.0/css/sco.message.min.css">
     <link rel="stylesheet" href="/s/css/editormd.min.css">
@@ -40,7 +40,7 @@
                 <div class="ui comments " style="max-width: 1600px;">
                     <h3 class="ui dividing header">评论</h3>
                     <div v-if="no_comments">
-                        <h2 style="text-align: center; color:#9e9e9e;">暂无评论</h2>
+                        <h2 style="text-align: center; color:#9e9e9e;">No comments</h2>
                     </div>
                     <div v-else class="comment" v-for="comment in comments">
                         <a class="avatar">
@@ -54,7 +54,7 @@
                             <div class="text">${ comment.content }}</div>
                             <div class="actions">
                                 <a class="reply" href="#comment"
-                                   @click="replyMethod(comment.id, comment.author.id, comment.author.nick)">回复</a>
+                                   @click="replyMethod(comment.id, comment.author.id, comment.author.nick)">Reply</a>
                             </div>
                         </div>
                         <div class="comments" v-for="reply in comment.replies">
@@ -72,7 +72,7 @@
                                     <div class="text">${ reply.content }}</div>
                                     <div class="actions">
                                         <a class="reply" href="#comment"
-                                           @click="replyMethod(comment.id, reply.create_by.id, reply.create_by.nick)">回复</a>
+                                           @click="replyMethod(comment.id, reply.create_by.id, reply.create_by.nick)">Reply</a>
                                     </div>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <p v-show="submit" style="text-align: center;">github 授权中,首次授权回调过程较慢,请耐心等待...</p>
+                            <p v-show="submit" style="text-align: center;">In github authorization, the first authorization callback process is slow, please be patient...</p>
                             <div class="progress" v-show="submit">
                                 <div class="indeterminate"></div>
                             </div>
@@ -101,7 +101,7 @@
                                             @click="createComment"
                                             style="margin-top: 65px; background-color: #ee6e73;">
                                         <i class="github icon" style="font-size: 1.5em;"></i>
-                                        ${ submit ? '评论中' : '评论' }}
+                                        ${ submit ? 'In comment' : 'Comment' }}
                                     </button>
                                 </div>
                             </div>

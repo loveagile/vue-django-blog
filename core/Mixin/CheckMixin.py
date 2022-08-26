@@ -50,7 +50,7 @@ class CheckSecurityMixin(object):
         self.get_current_secret()
         result = self.check_sign()
         if not result:
-            self.message = 'sign 验证失败'
+            self.message = 'sign verification failed'
             self.status_code = ERROR_PERMISSION_DENIED
             return False
         return True
